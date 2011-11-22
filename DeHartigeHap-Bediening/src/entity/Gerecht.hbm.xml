@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 22, 2011 3:55:37 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class catalog="vp4i2010b_a3" name="entity.Gerecht" table="gerecht">
+    <id name="productBarCode" type="int">
+      <column name="product_barCode"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="entity.Product" fetch="select" insert="false" name="product" update="false">
+      <column name="product_barCode" not-null="true" unique="true"/>
+    </many-to-one>
+    <property name="bereidingsTijd" type="time">
+      <column length="8" name="bereidingsTijd"/>
+    </property>
+    <property name="bereidingsWijze" type="string">
+      <column length="65535" name="bereidingsWijze"/>
+    </property>
+    <set inverse="false" name="ingredients" table="ingredient_has_gerecht">
+      <key>
+        <column name="gerecht_product_barCode" not-null="true"/>
+      </key>
+      <many-to-many entity-name="entity.Ingredient">
+        <column name="ingredient_ingredient" not-null="true"/>
+      </many-to-many>
+    </set>
+  </class>
+</hibernate-mapping>

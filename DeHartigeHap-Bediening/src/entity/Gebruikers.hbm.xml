@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 22, 2011 3:55:37 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class catalog="vp4i2010b_a3" name="entity.Gebruikers" table="gebruikers">
+    <id name="gebruikersNr" type="java.lang.Integer">
+      <column name="gebruikersNR"/>
+      <generator class="identity"/>
+    </id>
+    <property name="gebruikersNaam" type="string">
+      <column length="20" name="gebruikersNaam"/>
+    </property>
+    <property name="wachtwoord" type="string">
+      <column length="64" name="wachtwoord"/>
+    </property>
+    <property name="afdelingenNaam" type="string">
+      <column length="20" name="Afdelingen_Naam" not-null="true"/>
+    </property>
+  </class>
+</hibernate-mapping>
