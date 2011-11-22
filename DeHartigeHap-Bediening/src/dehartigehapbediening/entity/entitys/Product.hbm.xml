@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 22, 2011 3:55:37 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class catalog="vp4i2010b_a3" name="dehartigehapbediening.entity.entitys.Product" table="product">
+    <id name="barCode" type="int">
+      <column name="barCode"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="dehartigehapbediening.entity.entitys.Restaurant" fetch="select" name="restaurant">
+      <column length="20" name="restaurant_Naam" not-null="true"/>
+    </many-to-one>
+    <property name="beschrijving" type="string">
+      <column length="65535" name="beschrijving"/>
+    </property>
+    <property name="prijs" type="java.lang.Double">
+      <column name="prijs" precision="22" scale="0"/>
+    </property>
+    <set inverse="true" name="drankjes">
+      <key>
+        <column name="product_barCode" not-null="true" unique="true"/>
+      </key>
+      <one-to-many class="dehartigehapbediening.entity.entitys.Drankje"/>
+    </set>
+    <set inverse="true" name="gerechts">
+      <key>
+        <column name="product_barCode" not-null="true" unique="true"/>
+      </key>
+      <one-to-many class="dehartigehapbediening.entity.entitys.Gerecht"/>
+    </set>
+    <set inverse="false" name="bestellings" table="bestelling_has_product">
+      <key>
+        <column name="product_barCode" not-null="true"/>
+      </key>
+      <many-to-many entity-name="entity.Bestelling">
+        <column name="bestelling_bestelNR" not-null="true"/>
+      </many-to-many>
+    </set>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 22, 2011 3:55:37 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class catalog="vp4i2010b_a3" name="dehartigehapbediening.entity.entitys.Rekening" table="rekening">
+    <id name="rekeningNr" type="int">
+      <column name="rekeningNR"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="dehartigehapbediening.entity.entitys.Restaurant" fetch="select" name="restaurant">
+      <column length="20" name="restaurant_Naam" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="dehartigehapbediening.entity.entitys.Tafel" fetch="select" name="tafel">
+      <column name="tafel_tafelNR" not-null="true"/>
+    </many-to-one>
+    <property name="statusCode" type="java.lang.Integer">
+      <column name="statusCode"/>
+    </property>
+    <property name="datumTijdBetaling" type="timestamp">
+      <column length="19" name="datumTijdBetaling"/>
+    </property>
+    <set inverse="true" name="bestellings">
+      <key>
+        <column name="rekening_rekeningNR" not-null="true"/>
+      </key>
+      <one-to-many class="dehartigehapbediening.entity.entitys.Bestelling"/>
+    </set>
+  </class>
+</hibernate-mapping>
